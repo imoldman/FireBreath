@@ -126,7 +126,7 @@ if (NOT ATL_INCLUDE_DIR)
     if (MFCWIN)
         GET_FILENAME_COMPONENT(MFC_INCLUDE_DIR ${MFCWIN} PATH CACHE)
         message("-- Found MFC include dir: ${MFC_INCLUDE_DIR}")
-    else()
+    elseif(NOT MSVC11) # there is no winres.h in VC11, so skip this message
         message(FATAL_ERROR "FireBreath on windows requires ATL/MFC libs to be installed.  Please download the Microsoft DDK and install the build environments in $ENV{SystemDrive}\\WinDDK")
     endif()
 
