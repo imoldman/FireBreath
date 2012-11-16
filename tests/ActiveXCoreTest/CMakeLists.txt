@@ -41,6 +41,13 @@ add_definitions(
     /D "FB_UNITTEST"
 )
 
+if (MSVC11)
+    add_definitions(
+        /D "_WINDLL"
+        /D "_USERDLL"
+    )
+endif()
+
 file (GLOB IMPORTED RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     ${FB_PLUGINAUTO_SOURCE_DIR}/PluginInfo.*
     ../mock/*.cpp
