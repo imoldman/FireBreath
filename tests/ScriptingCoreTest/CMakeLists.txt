@@ -27,6 +27,7 @@ include_directories(
     ${FB_PLUGINAUTO_SOURCE_DIR}
     ${FB_CONFIG_DIR}
     ${FB_UNITTEST_FW_SOURCE_DIR}/src
+    ${Boost_USE_CPP11_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}
     ${ATL_INCLUDE_DIRS}
     )

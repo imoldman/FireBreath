@@ -109,3 +109,11 @@ if(UNIX)
     set(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO} -DNDEBUG")
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -DNDEBUG")
 endif()
+
+if (BOOST-USE-CPP11)
+    if (MSVC11)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /FI\"${FB_BOOST_USE_CPP11_DIR}/internal/all_in_one.hpp\"")
+    elseif()
+        # TODO(lixianliang): GCC and Clang
+    endif()
+endif()

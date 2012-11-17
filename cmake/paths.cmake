@@ -16,6 +16,7 @@ get_filename_component (FB_PROJECTS_DIR "${FB_PROJECTS_DIR}" ABSOLUTE)
 set (FB_PROJECTS_BINARY_DIR "${CMAKE_BINARY_DIR}/projects")
 
 set (FB_BOOST_SOURCE_DIR ${FB_SOURCE_DIR}/3rdParty/boost)
+set (FB_BOOST_USE_CPP11_DIR ${FB_SOURCE_DIR}/3rdParty/boost-use-cpp11)
 set (FB_GECKOSDK_SOURCE_DIR ${FB_SOURCE_DIR}/3rdParty/gecko-sdk/includes)
 set (FB_UTF8_SOURCE_DIR ${FB_SOURCE_DIR}/3rdParty/utf8)
 

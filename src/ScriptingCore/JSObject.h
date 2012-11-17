@@ -19,6 +19,7 @@ Copyright 2009 Richard Bateman, Firebreath development team
 #include "JSAPI.h"
 #include "BrowserHost.h"
 #include <iterator>
+#include <boost/bind.hpp>
 
 namespace FB
 {

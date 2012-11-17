@@ -30,6 +30,7 @@ include_directories(
     ${FB_PLUGINCORE_SOURCE_DIR}
     ${FB_CONFIG_DIR}
     ${ATL_INCLUDE_DIRS}
+    ${Boost_USE_CPP11_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}
     )
 

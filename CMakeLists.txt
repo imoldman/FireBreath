@@ -49,6 +49,10 @@ endif()
 
 #check to make sure we're either using WITH_SYSTEM_BOOST or have the firebreath-boost lib installed
 fb_check_boost()
+# use boost-use-cpp11 folder if we needed
+if (BOOST_USE_CPP11)
+    fb_wisp_boost_use_cpp11()
+endif()
 
 if (NOT FB_RELEASE AND FB_PROJECTS_DIR AND NOT EXISTS ${FB_PROJECTS_DIR})
     message(FATAL_ERROR "The specified project directory ${FB_PROJECTS_DIR} is not found")
