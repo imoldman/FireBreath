@@ -18,6 +18,10 @@ set (CMAKE_BACKWARDS_COMPATIBILITY 2.6)
 
 project(FireBreath_Cmake)
 
+include_directories(
+    ${FB_BOOST_SOURCE_DIR}  # TODO(lixianliang): tmp, for include boost/ref.hpp
+)
+
 file (GLOB COMMON RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     common.cmake
     CommonPluginConfig.cmake

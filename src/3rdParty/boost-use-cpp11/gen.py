@@ -84,19 +84,8 @@ ALL_HEADERS = [
 #// namespace thread_group {} ??? not implemented
 #}'''
 #    ),
-#    (
-#        r'boost/tuple/tuple.hpp', r'tuple', '''
-#namespace boost {
-#using std::get;
-#using std::make_tuple;
-#using std::swap;
-#using std::tie;
-#using std::tuple;
-#}'''
-#    ),
-#    (
-#        r'boost/tuple/tuple_comparison.hpp', r'tuple', ''
-#    ),
+    (r'boost/tuple/tuple.hpp', r'internal/tuple_wrapper.hpp', ''),
+    (r'boost/tuple/tuple_comparison.hpp', r'internal/tuple_wrapper.hpp', ''),
 #    (r'boost/type_traits.hpp', r'type_traits'),
 #    #(r'boost/type_traits/is_arithmetic.hpp', r'is_arithmetic'),
 #    #(r'boost/type_traits/is_floating_point.hpp', r'is_floating_point'),

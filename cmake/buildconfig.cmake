@@ -112,6 +112,7 @@ endif()
 
 if (BOOST-USE-CPP11)
     if (MSVC11)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_VARIADIC_MAX=10")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /FI\"${FB_BOOST_USE_CPP11_DIR}/internal/all_in_one.hpp\"")
     elseif()
         # TODO(lixianliang): GCC and Clang
