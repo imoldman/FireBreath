@@ -16,9 +16,6 @@ Copyright 2009 Richard Bateman, Firebreath development team
 #include <cstdio>
 #include <cassert>
 #include <algorithm>
-#include <boost/lambda/lambda.hpp>
-#include <boost/lambda/bind.hpp>
-#include <boost/lambda/construct.hpp>
 #include <boost/format.hpp>
 #include <boost/foreach.hpp>
 #include <boost/smart_ptr/enable_shared_from_this.hpp>
@@ -249,7 +246,7 @@ void FB::BrowserHost::retainJSAPIPtr( const FB::JSAPIPtr& obj ) const
 void FB::BrowserHost::releaseJSAPIPtr( const FB::JSAPIPtr& obj ) const
 {
     boost::recursive_mutex::scoped_lock _l(m_jsapimutex);
-    std::list<FB::JSAPIPtr>::iterator it = std::find_if(m_retainedObjects.begin(), m_retainedObjects.end(), boost::lambda::_1 == obj);
+    std::list<FB::JSAPIPtr>::iterator it = std::find(m_retainedObjects.begin(), m_retainedObjects.end(), obj);
     if (it != m_retainedObjects.end()) {
         m_retainedObjects.erase(it);
     }
@@ -307,13 +304,17 @@ void FB::AsyncCallManager::shutdown()
     // point it's no longer possible for the browser to finish the async calls
     canceledDataList.insert(DataList.begin(), DataList.end());
 
-    std::for_each(DataList.begin(), DataList.end(), boost::lambda::bind(&_asyncCallData::call, boost::lambda::_1));
+    std::for_each(DataList.begin(), DataList.end(), boost::bind(&_asyncCallData::call, _1));
     DataList.clear();
 }
 
 FB::AsyncCallManager::~AsyncCallManager()
 {
-    std::for_each(canceledDataList.begin(), canceledDataList.end(), boost::lambda::bind(boost::lambda::delete_ptr(), boost::lambda::_1));
+    for (std::set<_asyncCallData*>::iterator it = canceledDataList.begin(); it != canceledDataList.end(); ++it) {
+        delete *it;
+    }
+    // replace this for non-lambda
+    // std::for_each(canceledDataList.begin(), canceledDataList.end(), boost::lambda::bind(boost::lambda::delete_ptr(), boost::lambda::_1));
 }
 
 

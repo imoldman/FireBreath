@@ -16,9 +16,7 @@ Copyright 2011 Richard Bateman,
 #include "BrowserStream.h"
 #include "precompiled_headers.h" // On windows, everything above this line in PCH
 
-#include <boost/lambda/lambda.hpp>
-#include <boost/lambda/bind.hpp>
-#include <boost/thread/shared_mutex.hpp>
+#include <boost/bind.hpp>
 #include <algorithm>
 
 #include "BrowserStreamManager.h"
@@ -31,12 +29,11 @@ FB::BrowserStreamManager::BrowserStreamManager()
 FB::BrowserStreamManager::~BrowserStreamManager()
 {
     boost::recursive_mutex::scoped_lock _l(m_xtmutex);
-    using namespace boost::lambda;
 
     // Force close all of the streams so that they get a callback
     std::for_each(m_retainedStreams.begin(), m_retainedStreams.end(), 
-        boost::lambda::bind(&BrowserStream::close, 
-            boost::lambda::bind(&BrowserStreamPtr::get, boost::lambda::_1)));
+        boost::bind(&BrowserStream::close,
+            boost::bind(&BrowserStreamPtr::get, _1)));
     m_retainedStreams.clear();
 }
 
