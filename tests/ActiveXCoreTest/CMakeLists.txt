@@ -87,9 +87,11 @@ target_link_libraries (${PROJECT_NAME}
     UnitTest++
     Wininet
     )
-link_boost_library ( ${PROJECT_NAME} system )
-link_boost_library ( ${PROJECT_NAME} date_time )
-link_boost_library ( ${PROJECT_NAME} regex )
+if (NOT BOOST_USE_CPP11)
+    link_boost_library ( ${PROJECT_NAME} system )
+    link_boost_library ( ${PROJECT_NAME} date_time )
+    link_boost_library ( ${PROJECT_NAME} regex )
+endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${FB_BIN_DIR}"

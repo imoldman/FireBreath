@@ -17,6 +17,7 @@ Copyright 2009 Richard Bateman, Firebreath development team
 
 #include <vector>
 #include <string>
+#include <boost/chrono/duration.hpp>
 #include <boost/thread/condition_variable.hpp>
 #include <boost/thread/mutex.hpp>
 #include "APITypes.h"
@@ -141,7 +142,7 @@ namespace FB {
             CrossThreadCallPtr call(new CrossThreadCall(funct));
             CrossThreadCallWeakPtr *callWeak = new CrossThreadCallWeakPtr(call);
             {
-                boost::unique_lock<boost::mutex> lock(call->m_mutex);
+                boost::mutex::scoped_lock lock(call->m_mutex);
                 if (!host->ScheduleAsyncCall(&CrossThreadCall::syncCallbackFunctor, callWeak)) {
                     // Browser probably shutting down, but cross thread call failed.
                     delete callWeak;
@@ -149,8 +150,7 @@ namespace FB {
                 }
 
                 while (!call->m_returned && !host->isShutDown()) {
-                    boost::posix_time::time_duration wait_duration = boost::posix_time::milliseconds(10);
-                    call->m_cond.timed_wait(lock, wait_duration);
+                    call->m_cond.wait_for(lock, boost::chrono::milliseconds(10));
                 }
                 if (host->isShutDown())
                     throw FB::script_error("Shutting down");
@@ -183,7 +183,7 @@ namespace FB {
             CrossThreadCallPtr call(new CrossThreadCall(funct));
             CrossThreadCallWeakPtr *callWeak = new CrossThreadCallWeakPtr(call);
             {
-                boost::unique_lock<boost::mutex> lock(call->m_mutex);
+                boost::mutex::scoped_lock lock(call->m_mutex);
                 if (!host->ScheduleAsyncCall(&CrossThreadCall::syncCallbackFunctor, callWeak)) {
                     // Browser probably shutting down, but cross thread call failed.
                     delete callWeak;
@@ -191,8 +191,7 @@ namespace FB {
                 }
 
                 while (!call->m_returned && !host->isShutDown()) {
-                    boost::posix_time::time_duration wait_duration = boost::posix_time::milliseconds(10);
-                    call->m_cond.timed_wait(lock, wait_duration);
+                    call->m_cond.wait_for(lock, boost::chrono::milliseconds(10));
                 }
                 if (host->isShutDown())
                     throw FB::script_error("Shutting down");

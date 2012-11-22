@@ -25,7 +25,10 @@
 #define BOOST_USE_CPP11_INTERNAL_ALL_IN_ONE_HPP
 
 #ifdef __cplusplus
+#include "chrono_wrapper.hpp"
 #include "memory_wrapper.hpp"
+#include "systemerror_wrapper.hpp"
+#include "thread_family_wrapper.hpp"
 #include "tuple_wrapper.hpp"
 #endif
 

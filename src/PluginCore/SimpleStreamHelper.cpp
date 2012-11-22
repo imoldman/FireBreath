@@ -92,7 +92,7 @@ public:
         m_cond.notify_all();
     }
     void waitForDone() {
-        boost::unique_lock<boost::mutex> lock(m_mutex);
+        boost::mutex::scoped_lock lock(m_mutex);
         while (!done) {
             m_cond.wait(lock);
         }

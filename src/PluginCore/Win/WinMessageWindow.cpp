@@ -14,6 +14,7 @@ Copyright 2010 Richard Bateman, Firebreath development team
 
 #include "win_targetver.h"
 #include "win_common.h"
+#include <map>
 #include <boost/lexical_cast.hpp>
 #include <boost/bind.hpp>
 #include <boost/thread/recursive_mutex.hpp>

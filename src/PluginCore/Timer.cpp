@@ -16,6 +16,8 @@ License:    Dual license model; choose one of two:
 #include "Timer.h"
 #include "TimerService.h"
 
+#include <boost/bind.hpp>
+
 using namespace FB;
 
 namespace FB {
