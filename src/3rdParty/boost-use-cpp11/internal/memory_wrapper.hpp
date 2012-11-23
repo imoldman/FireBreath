@@ -7,7 +7,7 @@
 
 // according to N3376 [memory] (i.e. 20.6 Memory)
 namespace boost {
-using ::std::memory_order;
+//using ::std::memory_order;                            // not in Clang 4.1 and GCC 4.6
 using ::std::bad_weak_ptr;
 using ::std::shared_ptr;
 using ::std::make_shared;
@@ -18,30 +18,17 @@ using ::std::get_deleter;
 using ::std::weak_ptr;
 using ::std::owner_less;
 using ::std::enable_shared_from_this;
-using ::std::atomic_is_lock_free;
-using ::std::atomic_load;
-using ::std::atomic_load_explicit;
-using ::std::atomic_store;
-using ::std::atomic_store_explicit;
-using ::std::atomic_exchange;
-using ::std::atomic_exchange_explicit;
-//using ::std::atomic_compare_exchange_weak;            // not in boost/shared_ptr.hpp
-//using ::std::atomic_compare_exchange_strong;          // not in boost/shared_ptr.hpp
-//using ::std::atomic_compare_exchange_weak_explicit;   // not in boost/shared_ptr.hpp
-//using ::std::atomic_compare_exchange_strong_explicit; // not in boost/shared_ptr.hpp
-
-template<typename T> inline bool atomic_compare_exchange(shared_ptr<T> * p, shared_ptr<T> * v, shared_ptr<T> w) {
-    // TODO(lixianliang): strong or weak ?
-    return std::atomic_compare_exchange_strong(p, v, w);
-}
-
-template<typename T> inline bool atomic_compare_exchange_explicit(shared_ptr<T> * p,
-                                                               shared_ptr<T> * v,
-                                                               shared_ptr<T> w,
-                                                               memory_order /*success*/,
-                                                               memory_order /*failure*/ ) {
-    return atomic_compare_exchange( p, v, w ); // std::move( w )
-}
+//using ::std::atomic_is_lock_free;                       // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_load;                               // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_load_explicit;                      // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_store;                              // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_store_explicit;                     // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_exchange;                           // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_exchange_explicit;                  // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_compare_exchange_weak;              // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_compare_exchange_strong;            // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_compare_exchange_weak_explicit;     // not in Clang 4.1 and GCC 4.6
+//using ::std::atomic_compare_exchange_strong_explicit;   // not in Clang 4.1 and GCC 4.6
 
 template<typename T> inline void swap(shared_ptr<T> & a, shared_ptr<T> & b) {
     a.swap(b);
