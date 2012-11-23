@@ -13,61 +13,61 @@
 // according to N3376 [thread.threads] (i.e. 30.3 Threads)
 // according to N3376 [futures] (i.e. 30.6 Futures)
 namespace boost {
-using std::condition_variable;
-using std::condition_variable_any;
-//using std::mutex;
-//using std::recursive_mutex;
-//using std::timed_mutex;
-//using std::recursive_timed_mutex;
-using std::lock_guard;
-using std::unique_lock;
-using std::swap;
-using std::try_lock;
-using std::lock;
-using std::once_flag;
-using std::call_once;
-using std::thread;
-namespace this_thread = std::this_thread;
+using ::std::condition_variable;
+using ::std::condition_variable_any;
+//using ::std::mutex;
+//using ::std::recursive_mutex;
+//using ::std::timed_mutex;
+//using ::std::recursive_timed_mutex;
+using ::std::lock_guard;
+using ::std::unique_lock;
+using ::std::swap;
+using ::std::try_lock;
+using ::std::lock;
+using ::std::once_flag;
+using ::std::call_once;
+using ::std::thread;
+namespace this_thread = ::std::this_thread;
 
-namespace future_errc = std::future_errc;
-namespace launch = std::launch;
-namespace future_status = std::future_status;
+namespace future_errc = ::std::future_errc;
+namespace launch = ::std::launch;
+namespace future_status = ::std::future_status;
 
-using std::make_error_code;
-using std::make_error_condition;
-using std::future_error;
-using std::promise;
-using std::future;
-using std::shared_future;
-using std::async;
-using std::packaged_task;
+using ::std::make_error_code;
+using ::std::make_error_condition;
+using ::std::future_error;
+using ::std::promise;
+using ::std::future;
+using ::std::shared_future;
+using ::std::async;
+using ::std::packaged_task;
 
 template <typename T> class unique_lock;
-class mutex : public std::mutex {
+class mutex : public ::std::mutex {
 public:
-    typedef unique_lock<std::mutex> scoped_lock;
-    operator std::mutex&() {
+    typedef unique_lock<::std::mutex> scoped_lock;
+    operator ::std::mutex&() {
         return *this;
     }
 };
-class recursive_mutex : public std::recursive_mutex {
+class recursive_mutex : public ::std::recursive_mutex {
 public:
-    typedef unique_lock<std::recursive_mutex> scoped_lock;
-    operator std::recursive_mutex&() {
+    typedef unique_lock<::std::recursive_mutex> scoped_lock;
+    operator ::std::recursive_mutex&() {
         return *this;
     }
 };
-class timed_mutex : public std::timed_mutex {
+class timed_mutex : public ::std::timed_mutex {
 public:
-    typedef unique_lock<std::timed_mutex> scoped_lock;
-    operator std::timed_mutex&() {
+    typedef unique_lock<::std::timed_mutex> scoped_lock;
+    operator ::std::timed_mutex&() {
         return *this;
     }
 };
-class recursive_timed_mutex : public std::recursive_timed_mutex {
+class recursive_timed_mutex : public ::std::recursive_timed_mutex {
 public:
-    typedef unique_lock<std::recursive_timed_mutex> scoped_lock;
-    operator std::recursive_timed_mutex&() {
+    typedef unique_lock<::std::recursive_timed_mutex> scoped_lock;
+    operator ::std::recursive_timed_mutex&() {
         return *this;
     }
 };

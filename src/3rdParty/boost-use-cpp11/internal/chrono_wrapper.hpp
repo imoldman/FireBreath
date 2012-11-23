@@ -7,7 +7,7 @@
 
 // according to N3376 [time] (i.e. 20.11 Time utilities)
 namespace boost {
-namespace chrono = std::chrono;
+namespace chrono = ::std::chrono;
 }
 
 #endif // #ifndef BOOST_USE_CPP11_INTERNAL_CHRONO_WRAPPER_HPP
