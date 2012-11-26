@@ -4,6 +4,7 @@ set (CMAKE_BACKWARDS_COMPATIBILITY 2.6)
 project(boost-use-cpp11)
 
 include_directories (
+    ${FB_BOOST_USE_CPP11_DIR}   # TODO(lixianliang): tmp, for include inernal/mac/patched_system_error
     ${FB_BOOST_SOURCE_DIR}  # TODO(lixianliang): tmp, for include boost/ref.hpp
 )
 
@@ -48,6 +49,7 @@ SOURCE_GROUP(system FILES ${system})
 
 file(GLOB internal RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     internal/[^.]*.hpp
+    internal/mac/*
     )
 SOURCE_GROUP(internal FILES ${internal})
 

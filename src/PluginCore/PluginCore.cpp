@@ -33,11 +33,11 @@ volatile int PluginCore::ActivePluginCount = 0;
 
 std::string PluginCore::OS;
 std::string PluginCore::Browser;
-void PluginCore::setPlatform(const std::string& os, const std::string& browser)
+void PluginCore::setPlatform(const std::string& osstr, const std::string& browser)
 {
-    PluginCore::OS = os;
+    PluginCore::OS = osstr;
     PluginCore::Browser = browser;
-    FBLOG_INFO("PluginCore", "os: " << os << "; browser: " << browser);
+    FBLOG_INFO("PluginCore", "os: " << osstr << "; browser: " << browser);
 }
 
 /***************************\

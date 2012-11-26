@@ -48,34 +48,21 @@ using ::std::shared_future;
 using ::std::async;
 using ::std::packaged_task;
 
-template <typename T> class unique_lock;
 class mutex : public ::std::mutex {
 public:
     typedef unique_lock< ::std::mutex> scoped_lock;
-    operator ::std::mutex&() {
-        return *this;
-    }
 };
 class recursive_mutex : public ::std::recursive_mutex {
 public:
     typedef unique_lock< ::std::recursive_mutex> scoped_lock;
-    operator ::std::recursive_mutex&() {
-        return *this;
-    }
 };
 class timed_mutex : public ::std::timed_mutex {
 public:
     typedef unique_lock< ::std::timed_mutex> scoped_lock;
-    operator ::std::timed_mutex&() {
-        return *this;
-    }
 };
 class recursive_timed_mutex : public ::std::recursive_timed_mutex {
 public:
     typedef unique_lock< ::std::recursive_timed_mutex> scoped_lock;
-    operator ::std::recursive_timed_mutex&() {
-        return *this;
-    }
 };
 
 typedef mutex shared_mutex;

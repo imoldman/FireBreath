@@ -3,7 +3,11 @@
 #ifndef BOOST_USE_CPP11_INTERNAL_SYSTEMERROR_WRAPPER_HPP
 #define BOOST_USE_CPP11_INTERNAL_SYSTEMERROR_WRAPPER_HPP
 
-#include <system_error>
+#ifdef __clang__
+#   include "internal/mac/patched_system_error.hpp"
+#else
+#   include <system_error>
+#endif
 
 // according to N3376 [syserr] (i.e. 19.5 System error support)
 namespace boost {
