@@ -31,7 +31,8 @@ ThreadRunnerAPI::ThreadRunnerAPI(const FB::BrowserHostPtr& host, const FBTestPlu
 
 void ThreadRunnerAPI::threadRun()
 {
-    while (!boost::this_thread::interruption_requested())
+    //while (!boost::this_thread::interruption_requested())
+    while (true)
     {
         m_host->htmlLog("Thread Dialog iteration start");
 
@@ -91,14 +92,15 @@ void ThreadRunnerAPI::threadRun()
             }
         }
 
-        boost::this_thread::sleep(boost::posix_time::seconds(1));
+        boost::this_thread::sleep_for(boost::chrono::seconds(1));
+        //boost::this_thread::sleep(boost::posix_time::seconds(1));
     }
 }
 
 ThreadRunnerAPI::~ThreadRunnerAPI()
 {
-    m_thread.interrupt();
-    m_thread.join();
+    //m_thread.interrupt();
+    //m_thread.join();
 }
 
 void ThreadRunnerAPI::addMethod(const FB::JSObjectPtr &obj)

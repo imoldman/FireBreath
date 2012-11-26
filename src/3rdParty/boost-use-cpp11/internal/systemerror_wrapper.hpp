@@ -14,7 +14,11 @@ using ::std::system_category;
 using ::std::error_code;
 using ::std::error_condition;
 using ::std::system_error;
-namespace errc = ::std::errc;
+#ifdef _MSC_VER
+    namespace errc = ::std::errc;
+#else
+    using ::std::errc;
+#endif
 using ::std::make_error_code;
 using ::std::make_error_condition;
 

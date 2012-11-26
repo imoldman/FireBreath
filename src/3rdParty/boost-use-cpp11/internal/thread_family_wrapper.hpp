@@ -21,7 +21,7 @@ using ::std::condition_variable_any;
 //using ::std::recursive_timed_mutex;
 using ::std::lock_guard;
 using ::std::unique_lock;
-using ::std::swap;
+//using ::std::swap;                       invalid in GCC and Clang
 using ::std::try_lock;
 using ::std::lock;
 using ::std::once_flag;
@@ -29,9 +29,15 @@ using ::std::call_once;
 using ::std::thread;
 namespace this_thread = ::std::this_thread;
 
-namespace future_errc = ::std::future_errc;
-namespace launch = ::std::launch;
-namespace future_status = ::std::future_status;
+#ifdef _MSC_VER
+    namespace future_errc = ::std::future_errc;
+    namespace launch = ::std::launch;
+    namespace future_status = ::std::future_status;
+#else
+    using ::std::future_errc;
+    using ::std::launch;
+    using ::std::future_status;
+#endif
 
 using ::std::make_error_code;
 using ::std::make_error_condition;
@@ -45,28 +51,28 @@ using ::std::packaged_task;
 template <typename T> class unique_lock;
 class mutex : public ::std::mutex {
 public:
-    typedef unique_lock<::std::mutex> scoped_lock;
+    typedef unique_lock< ::std::mutex> scoped_lock;
     operator ::std::mutex&() {
         return *this;
     }
 };
 class recursive_mutex : public ::std::recursive_mutex {
 public:
-    typedef unique_lock<::std::recursive_mutex> scoped_lock;
+    typedef unique_lock< ::std::recursive_mutex> scoped_lock;
     operator ::std::recursive_mutex&() {
         return *this;
     }
 };
 class timed_mutex : public ::std::timed_mutex {
 public:
-    typedef unique_lock<::std::timed_mutex> scoped_lock;
+    typedef unique_lock< ::std::timed_mutex> scoped_lock;
     operator ::std::timed_mutex&() {
         return *this;
     }
 };
 class recursive_timed_mutex : public ::std::recursive_timed_mutex {
 public:
-    typedef unique_lock<::std::recursive_timed_mutex> scoped_lock;
+    typedef unique_lock< ::std::recursive_timed_mutex> scoped_lock;
     operator ::std::recursive_timed_mutex&() {
         return *this;
     }

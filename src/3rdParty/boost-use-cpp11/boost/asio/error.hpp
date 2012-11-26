@@ -4,9 +4,13 @@
 #ifndef FAKE_BOOST_ASIO_ERROR_HPP
 #define FAKE_BOOST_ASIO_ERROR_HPP
 
-#include "../../boost/boost/asio/error.hpp"  // #include <boost/asio/error.hpp>
+#ifdef _MSC_VER
+#   include "../../boost/boost/asio/error.hpp" // #include <boost/asio/error.hpp>
+#else
+#   include_next "boost/asio/error.hpp" // #include <boost/asio/error.hpp>
+#endif
 
-// we should use #include_next "boost/asio/error.hpp", but #include_next is only a extension in gcc
+// we should use #include_next "boost/asio/error.hpp", but #include_next is only a extension in gcc and clang
 // so we have to use replative path in this #include indicator, please forgive us :-)
 
 namespace std {

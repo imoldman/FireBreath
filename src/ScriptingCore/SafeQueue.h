@@ -98,13 +98,14 @@ namespace FB {
         ///
         /// @return true if a value is returned, false if the queue was empty
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        bool timed_wait_and_pop(Data& popped_value, const boost::posix_time::time_duration& duration)
+        template<typename Rep, typename Period>
+        bool timed_wait_and_pop(Data& popped_value, const boost::chrono::duration<Rep, Period>& duration)
         {
             boost::mutex::scoped_lock lock(the_mutex);
             if(the_queue.empty())
             {
                 // Wait for the specified duration if no values are there
-                the_condition_variable.timed_wait(lock, duration);
+                the_condition_variable.wait_for(lock, duration);
             }
             
             // See if a value was added; if not, we just timed out

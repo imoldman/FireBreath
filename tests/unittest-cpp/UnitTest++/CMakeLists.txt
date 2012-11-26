@@ -66,8 +66,14 @@ add_definitions(
     )
 
 if (UNIX)
-	set_target_properties(UnitTest++ PROPERTIES
-			COMPILE_FLAGS "-g -Wall -W -ansi"
-	)
+    if (NOT BOOST_USE_CPP11)
+	    set_target_properties(UnitTest++ PROPERTIES
+		    	COMPILE_FLAGS "-g -Wall -W -ansi"
+	    )
+    elseif()
+        set_target_properties(UnitTest++ PROPERTIES
+                COMPILE_FLAGS "-g -Wall -W"
+        )
+    endif()
 endif()
 
